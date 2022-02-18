@@ -1,6 +1,7 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
+  "description": "Joao's Team Project 3 - cinema management system",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
@@ -10,8 +11,8 @@
     "primereact": "^7.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,6 +20,15 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodersCamp2021/JoaoTeam-Project-3.git"
+  },
+  "author": "CodersCamp 2021 Joao's Team",
+  "bugs": {
+    "url": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/issues"
+  },
+  "homepage": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/#readme",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -36,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.5.0",
+    "prettier": "2.5.1"
   }
 }

@@ -1,10 +1,8 @@
 import './styles/App.css';
-import TestComponent from './components/TestComponent/TestComponent'
+import TestComponent from './components/TestComponent/TestComponent';
 
 function App() {
-    return (
-        < TestComponent />
-    );
+  return <TestComponent />;
 }
 
 export default App;

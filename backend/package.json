@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "startDev": "nodemon index.js"
+    "startDev": "nodemon index.js",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -15,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/issues"
   },
-  "homepage": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/#readme",
   "keywords": [],
   "license": "ISC",
   "engines": {
@@ -28,6 +31,9 @@
     "mongoose": "^6.2.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "nodemon": "^2.0.15",
+    "prettier": "2.5.1"
   }
 }

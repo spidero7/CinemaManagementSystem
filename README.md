@@ -7,7 +7,38 @@
 ## Project 3 - Cinema management system
 *The project was carried out as part of the largest open web programming course in Poland - [CodersCamp 2021](https://www.coderscamp.edu.pl/).*  
 
-### Contributors ✨
+### :cinema: About 
+
+### :wrench: Development 
+
+#### :cactus: Branches 
+
+1. **`develop`** is the development branch.
+2. **`main`** is the production branch.
+
+#### :file_folder: File Structure
+
+```
+├── README.md
+├── backend
+│   ├── config.js
+│   ├── controllers       // Handle requests processing
+│   ├── db                // Database handling
+│   ├── index.js
+│   └── routes            // Direct requests to controllers
+└── frontend
+    ├── public
+    │   └── index.html
+    └── src
+        ├── App.js
+        ├── components    // React components
+        ├── index.js
+        └── styles        // Style sheets
+```
+### :star2: Inspiration
+
+This project was based on [this idea](https://github.com/CodersCamp2021/Project-React-Node).
+### :sparkles: Contributors 
 
 Look at [emoji key](https://allcontributors.org/docs/en/emoji-key):
 

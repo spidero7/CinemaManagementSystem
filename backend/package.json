@@ -1,16 +1,28 @@
 {
   "name": "mern-app",
   "version": "1.0.0",
-  "description": "MyCinema system",
+  "description": "Joao's Team Project 3 - cinema management system",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "startDev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodersCamp2021/JoaoTeam-Project-3.git"
+  },
+  "author": "CodersCamp 2021 Joao's Team",
+  "bugs": {
+    "url": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/issues"
+  },
+  "homepage": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/#readme",
   "keywords": [],
-  "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "17.5.0"
+  },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.2.2"

@@ -1,0 +1,60 @@
+{
+  "projectName": "JoaoTeam-Project-3",
+  "projectOwner": "CodersCamp 2021 Joao's Team",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "../README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "JK-Sebastiao",
+      "name": "João Kiakumbo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14078333?v=4",
+      "profile": "https://github.com/JK-Sebastiao",
+      "contributions": [
+        "mentoring"
+      ]
+    },
+    {
+      "login": "J-emi",
+      "name": "Justyna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89035278?v=4",
+      "profile": "https://github.com/J-emi",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "spidero7",
+      "name": "Bartłomiej Pająk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64019212?v=4",
+      "profile": "https://github.com/spidero7",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "itspatys",
+      "name": "Patryk Pierzchała",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58817270?v=4",
+      "profile": "https://github.com/itspatys",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "werpietrzak",
+      "name": "Wer Pietrzak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95078050?v=4",
+      "profile": "https://github.com/werpietrzak",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

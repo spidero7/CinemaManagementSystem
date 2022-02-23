@@ -3,18 +3,23 @@ const express = require('express')
 const app = express()
 const { port } = require('./config')
 
-//database
-require('./db/mongoose')
-
 //routes
 const apiRouter = require('./routes/api')
-
-app.use('/', apiRouter)
+const authUser = require('./routes/auth')
+const postRoute = require('./routes/myAccount')
 
 //database
 require('./db/mongoose')
+
+//middlewares
+app.use(express.json())
+
+//route middlewares
+app.use('/', apiRouter)
+app.use('/', authUser)
+app.use('/', postRoute)
 
 //server
 app.listen(port, () => {
-  console.log(`Server listening on ${port}`)
+	console.log(`Server listening on ${port}`)
 })

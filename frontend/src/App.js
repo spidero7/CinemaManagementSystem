@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import NotFound from './components/NotFound/NotFound';
+import Register from './components/Auth/Register';
 
 import 'primereact/resources/themes/mdc-dark-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -15,6 +16,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="*" element={<NotFound />} />
+				<Route path="/register" element={<Register />} />
 			</Routes>
 		</BrowserRouter>
 	);

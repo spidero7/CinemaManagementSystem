@@ -14,11 +14,13 @@ const Navbar = () => {
 			items: [
 				{
 					label: 'Log in',
-					icon: 'pi pi-users'
+					icon: 'pi pi-users',
+					url: '/login'
 				},
 				{
 					label: 'Register',
-					icon: 'pi pi-user-plus'
+					icon: 'pi pi-user-plus',
+					url: '/register'
 				}
 			]
 		}

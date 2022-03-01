@@ -1,0 +1,43 @@
+/* FormDemo.css */
+
+.card-auth {
+	padding: 0px 30px 30px 30px;
+	background-color: #1e1e1e;
+	border: #1e1e1e solid 1px;
+	border-radius: 10px;
+	-webkit-box-shadow: 3px 4px 12px 1px rgba(185, 115, 196, 1);
+	-moz-box-shadow: 3px 4px 12px 1px rgba(185, 115, 196, 1);
+	box-shadow: 3px 4px 12px 1px rgba(185, 115, 196, 1);
+}
+
+.form-demo {
+	margin-top: 5rem;
+	color: #b973c4;
+}
+
+.form-demo .card-auth {
+	min-width: 500px;
+}
+.card-auth form {
+	margin-top: 2rem;
+}
+.card-auth .field {
+	margin-bottom: 1.5rem;
+}
+
+.sub-btn {
+	background: #b973c4 !important;
+	margin-top: 50px !important;
+}
+
+@media screen and (max-width: 960px) {
+	.form-demo .card-auth {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 640px) {
+	.form-demo .card-auth {
+		width: 100%;
+		min-width: 0;
+	}
+}

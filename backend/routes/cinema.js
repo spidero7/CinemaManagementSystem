@@ -43,10 +43,21 @@ route.post("/cinema", verifyToken, isAdmin, async (req, res) => {
 
     try {
         const savedCinema = await cinema.save()
-        res.status(201).json({ savedCinema })
+        return res.status(201).json({ savedCinema })
     } catch (e) {
-        console.error("error in cinema post", e)
+        console.error("server error - /cinema POST", e)
+        return res.status(500).send("Error saving the cinema.")
     }
+})
+
+route.get("/cinemas", async (req, res) => {
+    Cinema.find({}, (err, docs) => {
+        if(err) {
+            console.error(err)
+            return res.status(500).send("server error - /cinemas GET")
+        }
+        return res.status(200).send(docs)
+    })
 })
 
 module.exports = route

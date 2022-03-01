@@ -3,7 +3,6 @@ const Cinema = require('../model/Cinema')
 const verifyToken = require('../routes/verifyToken')
 const isAdmin = require('../controllers/api/middlewares/isAdmin')
 
-// ADD CINEMA
 route.post("/cinema", verifyToken, isAdmin, async (req, res) => {
     const cinema = new Cinema({
         country: req.body.country,
@@ -58,6 +57,21 @@ route.get("/cinemas", async (req, res) => {
         }
         return res.status(200).send(docs)
     })
+})
+
+route.put("/cinema", verifyToken, isAdmin, async (req, res) => {
+    Cinema.findByIdAndUpdate(
+        req.body.id ,
+        { ...req.body.newCinema },
+        { new: true },
+        (err, docs) => {
+            if(err) {
+                console.error(err)
+                return res.status(404).send("server error while updating cinema - /cinema PUT")
+            }
+            return res.status(200).send(docs)
+        }
+    )
 })
 
 module.exports = route

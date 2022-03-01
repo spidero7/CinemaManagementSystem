@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const { port } = require('./config')
+const cors = require('cors')
 
 //routes
 const apiRouter = require('./routes/api')
@@ -13,6 +14,7 @@ require('./db/mongoose')
 
 //middlewares
 app.use(express.json())
+app.use(cors({ origin: 'http://localhost:3001' }))
 
 //route middlewares
 app.use('/', apiRouter)

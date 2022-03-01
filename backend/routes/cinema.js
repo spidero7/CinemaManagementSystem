@@ -1,9 +1,10 @@
 const route = require('express').Router()
 const Cinema = require('../model/Cinema')
-
+const verifyToken = require('../routes/verifyToken')
+const isAdmin = require('../controllers/api/middlewares/isAdmin')
 
 // ADD CINEMA
-route.post("/cinema", async (req, res) => {
+route.post("/cinema", verifyToken, isAdmin, async (req, res) => {
     const cinema = new Cinema({
         country: req.body.country,
         city: req.body.city,

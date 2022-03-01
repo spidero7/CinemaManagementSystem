@@ -2,6 +2,7 @@ const route = require('express').Router()
 const Cinema = require('../model/Cinema')
 const verifyToken = require('../routes/verifyToken')
 const isAdmin = require('../controllers/api/middlewares/isAdmin')
+const mongoose = require('mongoose')
 
 route.post("/cinema", verifyToken, isAdmin, async (req, res) => {
     const cinema = new Cinema({
@@ -52,7 +53,6 @@ route.post("/cinema", verifyToken, isAdmin, async (req, res) => {
 route.get("/cinemas", async (req, res) => {
     Cinema.find({}, (err, docs) => {
         if(err) {
-            console.error(err)
             return res.status(500).send("server error - /cinemas GET")
         }
         return res.status(200).send(docs)
@@ -66,8 +66,20 @@ route.put("/cinema", verifyToken, isAdmin, async (req, res) => {
         { new: true },
         (err, docs) => {
             if(err) {
+                return res.status(400).send("server error while updating cinema - /cinema PUT")
+            }
+            return res.status(200).send(docs)
+        }
+    )
+})
+
+route.delete("/cinema/:id", verifyToken, isAdmin, async (req, res) => {
+    Cinema.findByIdAndDelete(
+        mongoose.Types.ObjectId(req.params.id),
+        (err, docs) => {
+            if(err) {
                 console.error(err)
-                return res.status(404).send("server error while updating cinema - /cinema PUT")
+                return res.status(400).send("server error while deleting cinema - /cinema DELETE")
             }
             return res.status(200).send(docs)
         }

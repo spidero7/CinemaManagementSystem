@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
+import { Divider } from 'primereact/divider';
 
 import { FieldError, FormSuccess } from '../../styles/Auth';
 
@@ -26,7 +27,7 @@ function Register() {
 		// eslint-disable-next-line no-unused-vars
 		const { password, ...data } = values;
 
-		const response = await axios.post('http://localhost:3000/register', data).catch((err) => {
+		const response = await axios.post('http://localhost:3000/register', values).catch((err) => {
 			if (err & err.response) console.log('Error: ', err);
 		});
 
@@ -47,6 +48,20 @@ function Register() {
 	});
 
 	console.log('Error: ', formik.errors);
+
+	const passwordFooter = (
+		<React.Fragment>
+			<Divider />
+			<p className="mt-2">Suggestions</p>
+			<ul className="pl-2 ml-2 mt-0" style={{ lineHeight: '1.5' }}>
+				<li>At least one lowercase</li>
+				<li>At least one uppercase</li>
+				<li>At least one numeric</li>
+				<li>Minimum 6 characters</li>
+				<li>Inclusion of at least one special character, e.g., ! @ # ? ]</li>
+			</ul>
+		</React.Fragment>
+	);
 
 	return (
 		<div className="form-demo">
@@ -101,6 +116,7 @@ function Register() {
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
 									toggleMask
+									footer={passwordFooter}
 								/>
 								<label htmlFor="password">Password</label>
 								<FieldError>

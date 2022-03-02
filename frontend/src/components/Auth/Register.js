@@ -7,13 +7,13 @@ import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
 
-import { FieldError, FormSuccess } from '../../styles/Auth';
+import { FieldError, FormSuccess, FormError } from '../../styles/Auth';
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
 
 const validationSchema = yup.object({
 	name: yup.string().min(6, 'Please enter you real name').required('Name is required'),
-	email: yup.string().email('Please enter you real name').required('Email is required'),
+	email: yup.string().email('Please enter you real email').required('Email is required'),
 	password: yup
 		.string()
 		.matches(PASSWORD_REGEX, 'Please enter a stron password')
@@ -22,17 +22,21 @@ const validationSchema = yup.object({
 
 function Register() {
 	const [success, setSuccess] = useState(null);
+	const [error, setError] = useState(null);
 
 	const onSubmit = async (values) => {
 		// eslint-disable-next-line no-unused-vars
 		const { password, ...data } = values;
 
 		const response = await axios.post('http://localhost:3000/register', values).catch((err) => {
-			if (err & err.response) console.log('Error: ', err);
+			if (err && err.response) setError(err.response.data.message);
+			setSuccess(null);
 		});
 
 		if (response && response.data) {
+			setError(null);
 			setSuccess(response.data.message);
+			formik.resetForm();
 		}
 	};
 
@@ -48,6 +52,7 @@ function Register() {
 	});
 
 	console.log('Error: ', formik.errors);
+	console.log(error);
 
 	const passwordFooter = (
 		<React.Fragment>
@@ -67,7 +72,8 @@ function Register() {
 		<div className="form-demo">
 			<div className="flex justify-content-center">
 				<div className="card-auth">
-					<FormSuccess>{success ? success : ''}</FormSuccess>
+					{!error && <FormSuccess>{success ? success : ''}</FormSuccess>}
+					{!success && <FormError>{error ? error : ''}</FormError>}
 					<form onSubmit={formik.handleSubmit} className="p-fluid">
 						<h2 className="text-center">Register</h2>
 						<div className="field">

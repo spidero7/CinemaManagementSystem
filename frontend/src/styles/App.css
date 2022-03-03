@@ -1,3 +1,6 @@
+@import url(../styles/CarouselDemo.css);
+
 body {
+	background-color: #121212;
 	margin: 0;
 }

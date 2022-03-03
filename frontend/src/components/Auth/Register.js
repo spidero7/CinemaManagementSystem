@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import axios from 'axios';
 import { useFormik } from 'formik';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
@@ -8,6 +7,9 @@ import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
 
 import { FieldError, FormSuccess, FormError } from '../../styles/Auth';
+
+import axios from '../../api/axios';
+const REGISTER_URL = '/register';
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
 
@@ -28,7 +30,7 @@ function Register() {
 		// eslint-disable-next-line no-unused-vars
 		const { password, ...data } = values;
 
-		const response = await axios.post('http://localhost:3000/register', values).catch((err) => {
+		const response = await axios.post(REGISTER_URL, values).catch((err) => {
 			if (err && err.response) setError(err.response.data.message);
 			setSuccess(null);
 		});

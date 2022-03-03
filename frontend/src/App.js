@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import NotFound from './components/NotFound/NotFound';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
+import MyAccount from './components/Auth/MyAccount';
 
 import 'primereact/resources/themes/mdc-dark-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -19,6 +20,7 @@ function App() {
 				<Route path="*" element={<NotFound />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/my-account" element={<MyAccount />} />
 			</Routes>
 		</BrowserRouter>
 	);

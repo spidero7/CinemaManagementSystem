@@ -23,12 +23,12 @@ router.post('/register', async (req, res) => {
 	const user = new User({
 		name: req.body.name,
 		email: req.body.email,
+		role: { User: 2001 },
 		password: hashedPassword,
 	})
 	try {
 		const savedUser = await user.save()
 		if (savedUser) res.json({ message: 'Thanks for registering' })
-		res.send({ user: user._id })
 	} catch (err) {
 		res.status(404).send(err)
 	}
@@ -48,12 +48,15 @@ router.post('/login', async (req, res) => {
 	const validPass = await bcrypt.compare(req.body.password, user.password)
 	if (!validPass) return res.status(400).send({ message: 'Invalid password' })
 
+	//find user roles
+	const roles = Object.values(user.roles)
+
 	//create and assign a token
 	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
 	res.json({
 		message: 'Login successful',
 		token,
-		user_details: { user: user._id, email: user.email },
+		user_details: { user: user._id, email: user.email, roles: roles, token },
 	})
 })
 

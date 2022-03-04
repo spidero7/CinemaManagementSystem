@@ -19,6 +19,16 @@ const userSchema = new mongoose.Schema({
 		max: 1024,
 		min: 6,
 	},
+	roles: {
+		User: {
+			type: String,
+			default: 'User',
+		},
+		Admin: {
+			type: String,
+			default: '',
+		},
+	},
 })
 
 module.exports = mongoose.model('User', userSchema)

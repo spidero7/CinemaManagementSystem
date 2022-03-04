@@ -9,6 +9,7 @@ import { Divider } from 'primereact/divider';
 import { FieldError, FormSuccess, FormError } from '../../styles/Auth';
 
 import axios from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
 const REGISTER_URL = '/register';
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
@@ -25,6 +26,8 @@ const validationSchema = yup.object({
 function Register() {
 	const [success, setSuccess] = useState(null);
 	const [error, setError] = useState(null);
+
+	const navigate = useNavigate();
 
 	const onSubmit = async (values) => {
 		// eslint-disable-next-line no-unused-vars
@@ -74,7 +77,7 @@ function Register() {
 		<div className="form-demo">
 			<div className="flex justify-content-center">
 				<div className="card-auth">
-					{!error && <FormSuccess>{success ? success : ''}</FormSuccess>}
+					{!error && <FormSuccess>{success ? success && navigate('/login') : ''}</FormSuccess>}
 					{!success && <FormError>{error ? error : ''}</FormError>}
 					<form onSubmit={formik.handleSubmit} className="p-fluid">
 						<h2 className="text-center">Register</h2>

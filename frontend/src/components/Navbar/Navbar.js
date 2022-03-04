@@ -4,10 +4,21 @@ import { Link } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { Menu } from 'primereact/menu';
 
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+
 import navLogo from './../../assets/img/nav-logo.svg';
 
 const Navbar = () => {
 	const menu = useRef(null);
+	const navigate = useNavigate();
+	const { setAuth } = useAuth();
+
+	const logout = async () => {
+		setAuth({});
+		navigate('/home');
+	};
+
 	const items = [
 		{
 			label: 'Account',
@@ -15,12 +26,27 @@ const Navbar = () => {
 				{
 					label: 'Log in',
 					icon: 'pi pi-users',
-					url: '/login'
+					command: () => navigate('/login')
 				},
 				{
 					label: 'Register',
 					icon: 'pi pi-user-plus',
-					url: '/register'
+					command: () => navigate('/register')
+				},
+				{
+					label: 'My Account',
+					icon: 'pi pi-user',
+					command: () => navigate('/my-account')
+				},
+				{
+					label: 'Admin Account',
+					icon: 'pi pi-user',
+					command: () => navigate('/admin-test')
+				},
+				{
+					label: 'Log Out',
+					icon: 'pi pi-user-minus',
+					command: () => logout()
 				}
 			]
 		}

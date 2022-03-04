@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
-import AuthContext from '../../context/AuthProvider';
+import React, { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import LoginSuccess from './LoginSuccess';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import axios from '../../api/axios';
 const LOGIN_URL = '/login';
@@ -18,10 +18,14 @@ const validationSchema = yup.object({
 
 function Login() {
 	// eslint-disable-next-line no-unused-vars
-	const { setAuth } = useContext(AuthContext);
+	const { setAuth } = useAuth();
+
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || '/';
+
 	const [success, setSuccess] = useState(null);
 	const [error, setError] = useState(null);
-	const [loginSuccess, setLoginSuccess] = useState(false);
 
 	const onSubmit = async (values) => {
 		// eslint-disable-next-line no-unused-vars
@@ -30,17 +34,16 @@ function Login() {
 		const response = await axios.post(LOGIN_URL, values).catch((err) => {
 			if (err && err.response) setError(err.response.data.message);
 			setSuccess(null);
-			setLoginSuccess(false);
 		});
 
 		if (response && response.data) {
 			setError(null);
-			setLoginSuccess(true);
 			setSuccess(response.data.message);
 			formik.resetForm();
-			const accessToken = response.data.token;
-			console.log(accessToken);
-			localStorage.setItem('token', response.data.token);
+			const userData = response.data.user_details;
+			console.log(userData);
+			setAuth(userData);
+			navigate(from, { replace: true });
 		}
 	};
 
@@ -58,58 +61,54 @@ function Login() {
 
 	return (
 		<>
-			{loginSuccess ? (
-				<LoginSuccess />
-			) : (
-				<div className="form-demo">
-					<div className="flex justify-content-center">
-						<div className="card-auth">
-							{!error && <FormSuccess>{success ? success : ''}</FormSuccess>}
-							{!success && <FormError>{error ? error : ''}</FormError>}
-							<form onSubmit={formik.handleSubmit} className="p-fluid">
-								<h2 className="text-center">Login</h2>
-								<div className="field">
-									<span className="p-float-label">
-										<InputText
-											name="email"
-											type="email"
-											id="email"
-											required
-											value={formik.values.email}
-											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
-										/>
-										<label htmlFor="email">Email</label>
-										<FieldError>
-											{formik.touched.email && formik.errors.email ? formik.errors.email : ''}
-										</FieldError>
-									</span>
-								</div>
-								<div className="field">
-									<span className="p-float-label">
-										<InputText
-											name="password"
-											type="password"
-											id="password"
-											required
-											value={formik.values.password}
-											onChange={formik.handleChange}
-											onBlur={formik.handleBlur}
-										/>
-										<label htmlFor="password">Password</label>
-										<FieldError>
-											{formik.touched.password && formik.errors.password
-												? formik.errors.password
-												: ''}
-										</FieldError>
-									</span>
-								</div>
-								<Button type="submit" label="Submit" className="sub-btn" />
-							</form>
-						</div>
+			<div className="form-demo">
+				<div className="flex justify-content-center">
+					<div className="card-auth">
+						{!error && <FormSuccess>{success ? success : ''}</FormSuccess>}
+						{!success && <FormError>{error ? error : ''}</FormError>}
+						<form onSubmit={formik.handleSubmit} className="p-fluid">
+							<h2 className="text-center">Login</h2>
+							<div className="field">
+								<span className="p-float-label">
+									<InputText
+										name="email"
+										type="email"
+										id="email"
+										required
+										value={formik.values.email}
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+									/>
+									<label htmlFor="email">Email</label>
+									<FieldError>
+										{formik.touched.email && formik.errors.email ? formik.errors.email : ''}
+									</FieldError>
+								</span>
+							</div>
+							<div className="field">
+								<span className="p-float-label">
+									<InputText
+										name="password"
+										type="password"
+										id="password"
+										required
+										value={formik.values.password}
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+									/>
+									<label htmlFor="password">Password</label>
+									<FieldError>
+										{formik.touched.password && formik.errors.password
+											? formik.errors.password
+											: ''}
+									</FieldError>
+								</span>
+							</div>
+							<Button type="submit" label="Submit" className="sub-btn" />
+						</form>
 					</div>
 				</div>
-			)}
+			</div>
 		</>
 	);
 }

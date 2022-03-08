@@ -31,10 +31,15 @@ function Login() {
 		// eslint-disable-next-line no-unused-vars
 		const { password, ...data } = values;
 
-		const response = await axios.post(LOGIN_URL, values).catch((err) => {
-			if (err && err.response) setError(err.response.data.message);
-			setSuccess(null);
-		});
+		const response = await axios
+			.post(LOGIN_URL, values, {
+				headers: { 'Content-Type': 'application/json' },
+				withCredentials: true
+			})
+			.catch((err) => {
+				if (err && err.response) setError(err.response.data.message);
+				setSuccess(null);
+			});
 
 		if (response && response.data) {
 			setError(null);

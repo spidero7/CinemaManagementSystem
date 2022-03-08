@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const User = require('../model/User')
-const verify = require('./verifyToken')
-const verifyUser = require('./verifyUser')
+const verifyToken = require('../middleware/verifyToken')
+const verifyUser = require('../middleware/verifyUser')
 
-router.get('/my-account', verify, verifyUser, (req, res) => {
+router.get('/', verifyToken, verifyUser, (req, res) => {
 	res.json(req.user)
 	User.findOne({ user: req.user })
 })

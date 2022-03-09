@@ -15,11 +15,18 @@ router.get('/', async (req, res) => {
 	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err) => {
 		if (err) return res.sendStatus(403)
 
+		const roles = Object.values(foundUser.roles)
 		const accessToken = jwt.sign(
-			{ _id: foundUser._id },
+			{
+				user_details: {
+					email: foundUser.email,
+					roles: roles,
+				},
+			},
 			process.env.ACCESS_TOKEN_SECRET,
 			{ expiresIn: '30s' }
 		)
+
 		res.json({ accessToken })
 	})
 })

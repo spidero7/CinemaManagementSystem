@@ -1,14 +1,17 @@
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
-module.exports = function (req, res, next) {
-	const token = req.header('auth-token')
-	if (!token) return res.status(401).send('Access Denied')
-
-	try {
-		const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-		req.user = verified
+const verifyJWT = (req, res, next) => {
+	const authHeader = req.headers.authorization || req.headers.Authorization
+	if (!authHeader?.startsWith('Bearer ')) return res.send('No auth').status(401)
+	console.log(authHeader) // Bearer token
+	const token = authHeader.split(' ')[1]
+	jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+		if (err) return res.send('Invalid token').status(403)
+		req.user = decoded.user_details.email
+		req.roles = decoded.user_details.roles
 		next()
-	} catch (err) {
-		res.status(400).send('Invalid Token')
-	}
+	})
 }
+
+module.exports = verifyJWT

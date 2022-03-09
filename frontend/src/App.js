@@ -11,8 +11,8 @@ import Unauthorized from './components/Auth/Unauthorized';
 import TestAdminPage from './components/TestComponent/TestAdminPage';
 
 const ROLES = {
-	User: 'User',
-	Admin: 'Admin'
+	Admin: 515,
+	User: 200
 };
 
 import 'primereact/resources/themes/mdc-dark-indigo/theme.css';

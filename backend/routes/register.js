@@ -22,7 +22,6 @@ router.post('/', async (req, res) => {
 	const user = new User({
 		name: req.body.name,
 		email: req.body.email,
-		role: { User: 2001 },
 		password: hashedPassword,
 	})
 	try {

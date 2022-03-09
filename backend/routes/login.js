@@ -23,14 +23,19 @@ router.post('/', async (req, res) => {
 
 	//create and assign a access token
 	const accessToken = jwt.sign(
-		{ _id: user._id },
+		{
+			user_details: {
+				email: user.email,
+				roles: roles,
+			},
+		},
 		process.env.ACCESS_TOKEN_SECRET,
 		{ expiresIn: '30s' }
 	)
 
 	//create and assign a refresh token
 	const refreshToken = jwt.sign(
-		{ _id: user._id },
+		{ email: user.email },
 		process.env.REFRESH_TOKEN_SECRET,
 		{ expiresIn: '1d' }
 	)
@@ -48,16 +53,7 @@ router.post('/', async (req, res) => {
 
 	console.log(req.cookies)
 
-	res.json({
-		message: 'Login successful',
-		accessToken,
-		user_details: {
-			user: user._id,
-			email: user.email,
-			roles: roles,
-			accessToken,
-		},
-	})
+	res.json({ accessToken })
 })
 
 module.exports = router

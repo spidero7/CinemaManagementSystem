@@ -45,9 +45,10 @@ function Login() {
 			setError(null);
 			setSuccess(response.data.message);
 			formik.resetForm();
-			const userData = response.data.user_details;
-			console.log(userData);
-			setAuth(userData);
+			const accessToken = response.data.accessToken;
+			const roles = response.data.roles;
+			console.log(accessToken, roles, values);
+			setAuth({ roles, accessToken });
 			navigate(from, { replace: true });
 		}
 	};

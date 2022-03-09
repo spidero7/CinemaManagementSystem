@@ -21,13 +21,10 @@ const userSchema = new mongoose.Schema({
 	},
 	roles: {
 		User: {
-			type: String,
-			default: 'User',
+			type: Number,
+			default: 200,
 		},
-		Admin: {
-			type: String,
-			default: '',
-		},
+		Admin: Number,
 	},
 	refreshToken: String,
 })

@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 	if (!validPass) return res.status(400).send({ message: 'Invalid password' })
 
 	//find user roles
-	const roles = Object.values(user.roles)
+	const roles = Object.values(user.roles).filter(Boolean)
 
 	//create and assign a access token
 	const accessToken = jwt.sign(
@@ -43,6 +43,7 @@ router.post('/', async (req, res) => {
 	user.refreshToken = refreshToken
 	const result = await user.save()
 	console.log(result)
+	console.log(roles)
 
 	res.cookie('jwt', refreshToken, {
 		httpOnly: true,
@@ -53,7 +54,7 @@ router.post('/', async (req, res) => {
 
 	console.log(req.cookies)
 
-	res.json({ accessToken })
+	res.json({ roles, accessToken })
 })
 
 module.exports = router

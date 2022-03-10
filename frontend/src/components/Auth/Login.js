@@ -28,9 +28,6 @@ function Login() {
 	const [error, setError] = useState(null);
 
 	const onSubmit = async (values) => {
-		// eslint-disable-next-line no-unused-vars
-		const { password, ...data } = values;
-
 		const response = await axios
 			.post(LOGIN_URL, values, {
 				headers: { 'Content-Type': 'application/json' },
@@ -45,10 +42,12 @@ function Login() {
 			setError(null);
 			setSuccess(response.data.message);
 			formik.resetForm();
-			const accessToken = response.data.accessToken;
-			const roles = response.data.roles;
-			console.log(accessToken, roles, values);
-			setAuth({ roles, accessToken });
+
+			console.log(JSON.stringify(response?.data));
+			const accessToken = response?.data?.accessToken;
+			const roles = response?.data?.roles;
+			setAuth({ values, roles, accessToken });
+
 			navigate(from, { replace: true });
 		}
 	};

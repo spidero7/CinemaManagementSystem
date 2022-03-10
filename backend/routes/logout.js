@@ -5,7 +5,7 @@ const User = require('../model/User')
 router.get('/', async (req, res) => {
 	const cookies = req.cookies
 	console.log(req.cookies)
-	if (!cookies?.jwt) return res.send('No content').status(204)
+	if (!cookies?.jwt) return res.status(204).send('No content')
 
 	const refreshToken = cookies.jwt
 

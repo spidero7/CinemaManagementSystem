@@ -1,4 +1,4 @@
-// import Users from './User';
+import Users from './User';
 
 function MyAccount() {
 	return (
@@ -6,7 +6,7 @@ function MyAccount() {
 			<div className="outer-container">
 				<div className="inner-container">
 					<h1>My Account</h1>
-					{/* <Users /> */}
+					<Users />
 				</div>
 			</div>
 		</>

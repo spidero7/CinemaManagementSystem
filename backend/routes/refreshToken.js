@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 	const refreshToken = cookies.jwt
 
 	const foundUser = await User.findOne({ refreshToken }).exec()
-	if (!foundUser) return res.send('No user in DB').status(403) //Forbidden
+	if (!foundUser) return res.status(403).send('No user in DB') //Forbidden
 	// evaluate jwt
 	jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err) => {
 		if (err) return res.sendStatus(403)

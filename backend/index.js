@@ -10,12 +10,20 @@ const verifyToken = require('./middleware/verifyToken')
 
 //routes
 const apiRouter = require('./routes/api')
+
 const registerRoute = require('./routes/register')
 const loginRoute = require('./routes/login')
 const refreshRoute = require('./routes/refreshToken')
 const logutRoute = require('./routes/logout')
 const userAccountRoute = require('./routes/userAccount')
 const adminAccountRoute = require('./routes/adminAccount')
+
+const authUser = require('./routes/auth')
+
+
+const cinemaRoute = require('./routes/cinema')
+const upcomingMovies = require('./routes/upcomingMovies')
+
 
 //database
 require('./db/mongoose')
@@ -29,6 +37,7 @@ app.use(cookieParser())
 
 //route middlewares
 app.use('/', apiRouter)
+
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)
 app.use('/refresh', refreshRoute)
@@ -37,6 +46,11 @@ app.use('/logout', logutRoute)
 app.use(verifyToken)
 app.use('/user-account', userAccountRoute)
 app.use('/admin-account', adminAccountRoute)
+
+
+app.use('/', cinemaRoute)
+app.use('/', upcomingMovies)
+
 
 //server
 app.listen(port, () => {

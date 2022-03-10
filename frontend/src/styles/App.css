@@ -1,3 +1,4 @@
+
 @import './Auth.css';
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300&display=swap');
 
@@ -8,6 +9,9 @@
 	--moz-box-shadow: 0px 0px 5px 0px rgba(185, 115, 196, 1);
 	--box-shadow: 0px 0px 5px 0px rgba(185, 115, 196, 1);
 }
+
+@import url(../styles/CarouselDemo.css);
+
 
 body {
 	background-color: #121212;

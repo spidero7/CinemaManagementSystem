@@ -12,7 +12,7 @@ import navLogo from './../../assets/img/nav-logo.svg';
 const Navbar = () => {
 	const menu = useRef(null);
 	const navigate = useNavigate();
-	const { setAuth } = useAuth();
+	const { auth, setAuth } = useAuth();
 
 	const logout = async () => {
 		setAuth({});
@@ -51,6 +51,12 @@ const Navbar = () => {
 			]
 		}
 	];
+
+	const hide = async () => {
+		if (!auth.accessToken) return (items[0].items[4].className = 'hide');
+	};
+
+	hide();
 
 	return (
 		<div className="flex bg-gray-900">

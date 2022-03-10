@@ -10,7 +10,7 @@ import Layout from './components/Auth/Layout';
 import Unauthorized from './components/Auth/Unauthorized';
 import TestAdminPage from './components/TestComponent/TestAdminPage';
 
-const ROLES = {
+export const ROLES = {
 	Admin: 515,
 	User: 200
 };

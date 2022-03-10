@@ -18,12 +18,8 @@ const logutRoute = require('./routes/logout')
 const userAccountRoute = require('./routes/userAccount')
 const adminAccountRoute = require('./routes/adminAccount')
 
-const authUser = require('./routes/auth')
-
-
 const cinemaRoute = require('./routes/cinema')
 const upcomingMovies = require('./routes/upcomingMovies')
-
 
 //database
 require('./db/mongoose')
@@ -47,10 +43,8 @@ app.use(verifyToken)
 app.use('/user-account', userAccountRoute)
 app.use('/admin-account', adminAccountRoute)
 
-
 app.use('/', cinemaRoute)
 app.use('/', upcomingMovies)
-
 
 //server
 app.listen(port, () => {

@@ -15,7 +15,7 @@ const REGISTER_URL = '/register';
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/;
 
 const validationSchema = yup.object({
-	name: yup.string().min(6, 'Please enter you real name').required('Name is required'),
+	name: yup.string().min(3, 'Please enter your first name').required('Name is required'),
 	email: yup.string().email('Please enter you real email').required('Email is required'),
 	password: yup
 		.string()

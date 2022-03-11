@@ -73,11 +73,17 @@ function Register() {
 		</React.Fragment>
 	);
 
+	if (success) {
+		setTimeout(() => {
+			navigate('/login');
+		}, 1000);
+	}
+
 	return (
 		<div className="form-demo">
 			<div className="flex justify-content-center">
 				<div className="card-auth">
-					{!error && <FormSuccess>{success ? success && navigate('/login') : ''}</FormSuccess>}
+					{!error && <FormSuccess>{success ? success : ''}</FormSuccess>}
 					{!success && <FormError>{error ? error : ''}</FormError>}
 					<form onSubmit={formik.handleSubmit} className="p-fluid">
 						<h2 className="text-center">Register</h2>
@@ -92,7 +98,6 @@ function Register() {
 									onChange={formik.handleChange}
 									onBlur={formik.handleBlur}
 								/>
-
 								<label htmlFor="name">Name</label>
 								<FieldError>
 									{formik.touched.name && formik.errors.name ? formik.errors.name : ''}

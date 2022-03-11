@@ -26,6 +26,11 @@ function Login() {
 
 	const [success, setSuccess] = useState(null);
 	const [error, setError] = useState(null);
+	const [isActive, setActive] = useState(false);
+
+	const handleToggle = () => {
+		setActive(!isActive);
+	};
 
 	const onSubmit = async (values) => {
 		const response = await axios
@@ -94,7 +99,7 @@ function Login() {
 								<span className="p-float-label">
 									<InputText
 										name="password"
-										type="password"
+										type={isActive ? 'text' : 'password'}
 										id="password"
 										required
 										value={formik.values.password}
@@ -102,12 +107,16 @@ function Login() {
 										onBlur={formik.handleBlur}
 									/>
 									<label htmlFor="password">Password</label>
+
 									<FieldError>
 										{formik.touched.password && formik.errors.password
 											? formik.errors.password
 											: ''}
 									</FieldError>
 								</span>
+								<i
+									className={isActive ? 'pi pi-eye-slash mask' : 'pi pi-eye mask'}
+									onClick={handleToggle}></i>
 							</div>
 							<Button type="submit" label="Submit" className="sub-btn" />
 						</form>

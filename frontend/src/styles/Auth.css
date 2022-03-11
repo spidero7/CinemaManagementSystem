@@ -55,6 +55,14 @@
 	display: none;
 }
 
+.mask {
+	position: relative !important;
+	top: -48px !important;
+	left: 410px !important;
+	color: #a4a4a4 !important;
+	cursor: pointer;
+}
+
 @media screen and (max-width: 960px) {
 	.form-demo .card-auth {
 		width: 80%;

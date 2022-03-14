@@ -1,11 +1,11 @@
-import UpcomingMovies from "../UpcomingMovies/UpcomingMovies";
+import UpcomingMovies from '../UpcomingMovies/UpcomingMovies';
 
 const Home = () => {
 	return (
 		<div>
 			<div className="card"></div>
 			<UpcomingMovies />
-		</div>);
+		</div>
+	);
 };
-
 export default Home;

@@ -1,43 +1,44 @@
 {
-  "name": "mern-app",
-  "version": "1.0.0",
-  "description": "Joao's Team Project 3 - cinema management system",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "startDev": "nodemon index.js",
-    "test": "node test.js",
-    "format:check": "prettier --check .",
-    "format:write": "prettier --write .",
-    "lint:check": "eslint .",
-    "lint:fix": "eslint --fix ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CodersCamp2021/JoaoTeam-Project-3.git"
-  },
-  "author": "CodersCamp 2021 Joao's Team",
-  "bugs": {
-    "url": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/issues"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "engines": {
-    "node": "17.5.0"
-  },
-  "dependencies": {
-    "@hapi/joi": "^15.0.3",
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.2"
-  },
-  "devDependencies": {
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
-    "nodemon": "^2.0.15",
-    "prettier": "2.5.1"
-  }
+	"name": "mern-app",
+	"version": "1.0.0",
+	"description": "Joao's Team Project 3 - cinema management system",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"startDev": "nodemon index.js",
+		"test": "node test.js",
+		"format:check": "prettier --check .",
+		"format:write": "prettier --write .",
+		"lint:check": "eslint .",
+		"lint:fix": "eslint --fix ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CodersCamp2021/JoaoTeam-Project-3.git"
+	},
+	"author": "CodersCamp 2021 Joao's Team",
+	"bugs": {
+		"url": "https://github.com/CodersCamp2021/JoaoTeam-Project-3/issues"
+	},
+	"keywords": [],
+	"license": "ISC",
+	"engines": {
+		"node": "17.5.0"
+	},
+	"dependencies": {
+		"@hapi/joi": "^15.0.3",
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.6",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.2.2"
+	},
+	"devDependencies": {
+		"eslint": "^8.9.0",
+		"eslint-config-prettier": "^8.3.0",
+		"nodemon": "^2.0.15",
+		"prettier": "2.5.1"
+	}
 }

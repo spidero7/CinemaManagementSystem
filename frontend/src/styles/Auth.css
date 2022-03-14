@@ -1,0 +1,76 @@
+.card-auth {
+	padding: 0px 30px 30px 30px;
+	background-color: #1e1e1e;
+	border: #1e1e1e solid 1px;
+	border-radius: 10px;
+	-webkit-box-shadow: var(--webkit-box-shadow);
+	-moz-box-shadow: var(--moz-box-shadow);
+	box-shadow: var(--box-shadow);
+}
+
+.form-demo {
+	margin-top: 5rem;
+	color: var(--font-color);
+}
+
+.form-demo .card-auth {
+	min-width: 500px;
+}
+.card-auth form {
+	margin-top: 2rem;
+}
+.card-auth .field {
+	margin-bottom: 1.5rem;
+}
+
+.sub-btn {
+	background: var(--font-color) !important;
+	margin-top: 50px !important;
+}
+
+.outer-container {
+	margin-top: 5rem;
+	display: flex;
+	justify-content: center;
+}
+
+.inner-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 100px;
+	background-color: #1e1e1e;
+	color: var(--font-color);
+	-webkit-box-shadow: var(--webkit-box-shadow);
+	-moz-box-shadow: var(--moz-box-shadow);
+	box-shadow: var(--box-shadow);
+}
+
+.links {
+	text-decoration: none;
+}
+
+.hide {
+	display: none;
+}
+
+.mask {
+	position: relative !important;
+	top: -48px !important;
+	left: 410px !important;
+	color: #a4a4a4 !important;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+	.form-demo .card-auth {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 640px) {
+	.form-demo .card-auth {
+		width: 100%;
+		min-width: 0;
+	}
+}

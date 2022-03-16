@@ -3,12 +3,13 @@ import RequireAuth from './components/Auth/RequireAuth';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import NotFound from './components/NotFound/NotFound';
+import MoviesTable from './components/MoviesManagement/MoviesManagement';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import MyAccount from './components/Auth/MyAccount';
 import Layout from './components/Auth/Layout';
 import Unauthorized from './components/Auth/Unauthorized';
-import TestAdminPage from './components/TestComponent/TestAdminPage';
+import AdminPanel from './components/AdminPanel/AdminPanel';
 
 export const ROLES = {
 	Admin: 515,
@@ -25,6 +26,9 @@ function App() {
 		<>
 			<Navbar />
 			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/" element={<Navbar />} />
+
 				<Route path="/" element={<Layout />}></Route>
 				{/* {public routes} */}
 				<Route path="/home" element={<Home />} />
@@ -38,10 +42,12 @@ function App() {
 				</Route>
 				{/* {protected admin routes} */}
 				<Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-					<Route path="/admin-test" element={<TestAdminPage />} />
+					<Route path="/admin-panel" element={<AdminPanel />} />
+					<Route path="/movies" element={<MoviesTable />} />
 				</Route>
 
 				{/* {catch all} */}
+
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>

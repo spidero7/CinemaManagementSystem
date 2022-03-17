@@ -1,10 +1,14 @@
 const route = require('express').Router()
 const Cinema = require('../model/Cinema')
 const verifyToken = require('../middleware/verifyToken')
-const isAdmin = require('../controllers/api/middlewares/isAdmin')
 const mongoose = require('mongoose')
 
-route.post('/cinema', verifyToken, isAdmin, async (req, res) => {
+const cors = require("cors");
+const corsOptions = require('../config/corsOptions');
+
+route.use(cors(corsOptions));
+
+route.post('/cinema', cors(corsOptions), verifyToken, async (req, res) => {
 	const cinema = new Cinema({
 		country: req.body.country,
 		city: req.body.city,
@@ -59,7 +63,7 @@ route.get('/cinemas', async (req, res) => {
 	})
 })
 
-route.put('/cinema', verifyToken, isAdmin, async (req, res) => {
+route.put('/cinema', cors(corsOptions), verifyToken, async (req, res) => {
 	Cinema.findByIdAndUpdate(
 		req.body.id,
 		{ ...req.body.newCinema },
@@ -75,7 +79,7 @@ route.put('/cinema', verifyToken, isAdmin, async (req, res) => {
 	)
 })
 
-route.delete('/cinema/:id', verifyToken, isAdmin, async (req, res) => {
+route.delete('/cinema/:id', cors(corsOptions), verifyToken, async (req, res) => {
 	Cinema.findByIdAndDelete(
 		mongoose.Types.ObjectId(req.params.id),
 		(err, docs) => {

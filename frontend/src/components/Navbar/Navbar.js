@@ -42,7 +42,7 @@ const Navbar = () => {
 				{
 					label: 'Admin Account',
 					icon: 'pi pi-user',
-					command: () => navigate('/admin-test')
+					command: () => navigate('/admin-panel')
 				},
 				{
 					label: 'Log Out',
@@ -95,7 +95,7 @@ const Navbar = () => {
 					onClick={(event) => menu.current.toggle(event)}
 					aria-haspopup
 					style={{
-						color: 'var(--purple-300)'
+						color: 'var(--pink-600)'
 					}}
 				/>
 			</div>

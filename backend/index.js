@@ -20,6 +20,8 @@ const adminAccountRoute = require('./routes/adminAccount')
 
 const cinemaRoute = require('./routes/cinema')
 const upcomingMovies = require('./routes/upcomingMovies')
+const moviesManagement = require('./routes/moviesManagement')
+
 
 //database
 require('./db/mongoose')
@@ -33,6 +35,7 @@ app.use(cookieParser())
 
 //route middlewares
 app.use('/', apiRouter)
+app.use('/', upcomingMovies)
 
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)
@@ -44,7 +47,7 @@ app.use('/user-account', userAccountRoute)
 app.use('/admin-account', adminAccountRoute)
 
 app.use('/', cinemaRoute)
-app.use('/', upcomingMovies)
+app.use('/movies', moviesManagement)
 
 //server
 app.listen(port, () => {

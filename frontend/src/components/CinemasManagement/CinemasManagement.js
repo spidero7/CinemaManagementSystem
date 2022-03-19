@@ -129,6 +129,7 @@ const CinemasManagement = () => {
                     icon="pi pi-plus" 
                     label="New cinema"
                     onClick={() => {
+                        setAddDataDialogMode("ADD")
                         setAddData(cinemaTemplate)
                         setDisplayAddModal(true)
                     }}

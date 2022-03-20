@@ -22,6 +22,7 @@ const cinemaRoute = require('./routes/cinema')
 const upcomingMovies = require('./routes/upcomingMovies')
 const moviesManagement = require('./routes/moviesManagement')
 const movieInfo = require('./routes/movieInfo')
+const cinemaHallRoute = require('./routes/cinemaHall')
 
 
 //database
@@ -43,6 +44,7 @@ app.use('/register', registerRoute)
 app.use('/login', loginRoute)
 app.use('/refresh', refreshRoute)
 app.use('/logout', logutRoute)
+app.use('/', cinemaHallRoute)
 
 app.use(verifyToken)
 app.use('/user-account', userAccountRoute)

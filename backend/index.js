@@ -21,6 +21,7 @@ const adminAccountRoute = require('./routes/adminAccount')
 const cinemaRoute = require('./routes/cinema')
 const upcomingMovies = require('./routes/upcomingMovies')
 const moviesManagement = require('./routes/moviesManagement')
+const movieInfo = require('./routes/movieInfo')
 
 
 //database
@@ -36,6 +37,7 @@ app.use(cookieParser())
 //route middlewares
 app.use('/', apiRouter)
 app.use('/', upcomingMovies)
+app.use('/movie', movieInfo)
 
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)

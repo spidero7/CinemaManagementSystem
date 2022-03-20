@@ -1,0 +1,61 @@
+.m-container {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    color: azure;
+    margin: 3rem 7rem 1rem 7rem;
+}
+
+.poster {
+    max-width: 80%;
+    box-shadow: 0 0 1em #C9356D;
+}
+
+.m-details {
+    display: flex;
+    flex-direction: column;
+    font-weight: lighter;
+}
+
+.m-title {
+    text-shadow: 2px 2px 3px #C9356D;
+    margin-top: 0%;
+}
+
+.m-time {
+    color: #C9356D;
+    font-size: 1.3rem;
+    
+}
+
+.m-director {
+    font-size: 1.3rem;
+    font-weight: lighter;
+}
+
+.m-desc {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.07rem;
+    line-height: 1.5;
+}
+
+.m-genres {
+    font-size: 1.2rem;
+}
+
+.m-stars {
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .m-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .m-title {
+        margin-top: 2rem;
+    }
+  }

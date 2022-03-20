@@ -10,6 +10,7 @@ import { Checkbox } from 'primereact/checkbox';
 import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import '../../styles/MoviesTable.css';
@@ -173,6 +174,14 @@ const MoviesTable = () => {
         );
     }
 
+    const showInfoBodyTemplate = (movie) => {
+        return (
+            <Link to={`/movie/${movie._id}`}>
+                <Button icon="pi pi-search" className="p-button-rounded p-button-info" onClick={() => useNavigate(`/movie/${movie._id}`)} />
+            </Link>
+        );
+    }
+
     const posterBodyTemplate = (movie) => {
         return <img src={`${movie.poster}`} onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={movie.title} className="poster" />
     }
@@ -210,7 +219,8 @@ const MoviesTable = () => {
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} movies"
                     globalFilter={globalFilter} header={header} responsiveLayout="scroll" rowKey={movie._id}>
-                    <Column headerStyle={{ width: '3rem' }} exportable={false}></Column>
+
+                    <Column body={showInfoBodyTemplate} exportable={false}></Column>
                     <Column field="title" header="Title" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="year" header="Year" sortable style={{ minWidth: '8rem' }}></Column>
                     <Column field="director" header="Director" sortable style={{ minWidth: '12rem' }}></Column>

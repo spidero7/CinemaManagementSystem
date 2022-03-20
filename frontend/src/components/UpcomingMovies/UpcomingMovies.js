@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'primereact/carousel';
 import '../../styles/CarouselDemo.css'
+import { Link } from 'react-router-dom';
 
 const UpcomingMovies = () => {
     const [movies, setMovies] = useState([]);
@@ -34,7 +35,9 @@ const UpcomingMovies = () => {
             <div className="movie-item">
                 <div className="movie-item-content">
                     <div className="mb-3">
-                        <img src={`${movie.poster}`} onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={movie.title} className="poster" />
+                        <Link to={`/movie/${movie._id}`}>
+                            <img src={`${movie.poster}`} onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} alt={movie.title} className="poster" />
+                        </Link>
                     </div>
                     <div>
                         <h4 className="mb-1">{movie.title}</h4>

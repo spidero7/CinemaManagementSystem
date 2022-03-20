@@ -11,6 +11,7 @@ import Layout from './components/Auth/Layout';
 import Unauthorized from './components/Auth/Unauthorized';
 import CinemasManagement from './components/CinemasManagement/CinemasManagement'
 import AdminPanel from './components/AdminPanel/AdminPanel';
+import MovieInfo from './components/MovieInfo/MovieInfo';
 
 export const ROLES = {
 	Admin: 515,
@@ -36,6 +37,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/unauthorized" element={<Unauthorized />} />
+				<Route path="/movie/:id" element={<MovieInfo />} />
 
 				{/* {protected user routes} */}
 				<Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>

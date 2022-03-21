@@ -8,6 +8,8 @@ import { InputText } from 'primereact/inputtext';
 import { Calendar } from "primereact/calendar";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate"
 
+import CinemaHalls from "../CinemaHalls/CinemaHalls";
+
 const CinemasManagement = () => {
     const axiosPrivate = useAxiosPrivate()
     const [cinemas, setCinemas] = useState([])
@@ -118,6 +120,11 @@ const CinemasManagement = () => {
         })
     }
 
+    const handleFormCancel = () => {
+        setAddData(cinemaTemplate)
+        setDisplayAddModal(false)
+    }
+
     useEffect(handleCinemasFetch, [])
 
     return (
@@ -153,7 +160,7 @@ const CinemasManagement = () => {
                                 handleCinemaAdd()
                             }}
                         ></Button>
-                        <Button icon="pi pi-times" label="Cancel" className="p-button-secondary ml-2"></Button>
+                        <Button icon="pi pi-times" label="Cancel" className="p-button-secondary ml-2" onClick={handleFormCancel}></Button>
                     </div> 
                 : 
                     <div className="flex">
@@ -165,7 +172,7 @@ const CinemasManagement = () => {
                                 handleCinemaEdit()
                             }}
                         ></Button>
-                        <Button icon="pi pi-times" label="Cancel" className="p-button-secondary ml-2"></Button>
+                        <Button icon="pi pi-times" label="Cancel" className="p-button-secondary ml-2" onClick={handleFormCancel}></Button>
                     </div>}
             >
                 <div className="field">
@@ -315,15 +322,18 @@ const CinemasManagement = () => {
                                 </span>
                             }
                         >
-                            <ul>
-                                <li>Monday: {getTime(cinema.openingHours.monday.start, cinema.openingHours.monday.end)}</li>
-                                <li>Tuesday: {getTime(cinema.openingHours.tuesday.start, cinema.openingHours.tuesday.end)}</li>
-                                <li>Wednesday: {getTime(cinema.openingHours.wednesday.start, cinema.openingHours.wednesday.end)}</li>
-                                <li>Thursday: {getTime(cinema.openingHours.thursday.start, cinema.openingHours.thursday.end)}</li>
-                                <li>Friday: {getTime(cinema.openingHours.friday.start, cinema.openingHours.friday.end)}</li>
-                                <li>Saturday: {getTime(cinema.openingHours.saturday.start, cinema.openingHours.saturday.end)}</li>
-                                <li>Sunday: {getTime(cinema.openingHours.sunday.start, cinema.openingHours.sunday.end)}</li>
-                            </ul>
+                            <div>
+                                <ul>
+                                    <li>Monday: {getTime(cinema.openingHours.monday.start, cinema.openingHours.monday.end)}</li>
+                                    <li>Tuesday: {getTime(cinema.openingHours.tuesday.start, cinema.openingHours.tuesday.end)}</li>
+                                    <li>Wednesday: {getTime(cinema.openingHours.wednesday.start, cinema.openingHours.wednesday.end)}</li>
+                                    <li>Thursday: {getTime(cinema.openingHours.thursday.start, cinema.openingHours.thursday.end)}</li>
+                                    <li>Friday: {getTime(cinema.openingHours.friday.start, cinema.openingHours.friday.end)}</li>
+                                    <li>Saturday: {getTime(cinema.openingHours.saturday.start, cinema.openingHours.saturday.end)}</li>
+                                    <li>Sunday: {getTime(cinema.openingHours.sunday.start, cinema.openingHours.sunday.end)}</li>
+                                </ul>
+                            </div>
+                            <CinemaHalls cinemaId={cinema._id} />
                         </Card>
                     )
                 })}

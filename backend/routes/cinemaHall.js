@@ -1,6 +1,8 @@
 const route = require('express').Router()
 const CinemaHall = require('../model/CinemaHall')
 const verifyToken = require('../middleware/verifyToken')
+const verifyRoles = require('../middleware/verifyRoles')
+const ROLES_LIST = require('../config/roles_list')
 const mongoose = require('mongoose')
 
 const cors = require('cors')
@@ -8,7 +10,7 @@ const corsOptions = require('../config/corsOptions')
 
 route.use(cors(corsOptions))
 
-route.post('/cinema-hall', verifyToken, async (req, res) => {
+route.post('/cinema-hall', verifyToken, verifyRoles(ROLES_LIST.Admin), async (req, res) => {
     const cinemaHall = new CinemaHall({
         rows: req.body.rows,
         cols: req.body.cols,
@@ -57,7 +59,7 @@ route.get('/cinema-hall/:cinemaHallId', async (req, res) => {
     })
 })
 
-route.put('/cinema-hall', verifyToken, async (req, res) => {
+route.put('/cinema-hall', verifyToken, verifyRoles(ROLES_LIST.Admin), async (req, res) => {
     CinemaHall.findByIdAndUpdate(
         req.body.id,
         {...req.body.newCinemaHall},
@@ -72,7 +74,7 @@ route.put('/cinema-hall', verifyToken, async (req, res) => {
     )
 })
 
-route.delete('/cinema-hall/:cinemaHallId', verifyToken, async (req, res) => {
+route.delete('/cinema-hall/:cinemaHallId', verifyToken, verifyRoles(ROLES_LIST.Admin), async (req, res) => {
     CinemaHall.findByIdAndDelete(
         mongoose.Types.ObjectId(req.params.cinemaHallId),
         (err, docs) => {

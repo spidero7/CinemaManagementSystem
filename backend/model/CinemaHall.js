@@ -7,11 +7,23 @@ const cinemaHallSchema = new mongoose.Schema({
     },
     rows: {
         type: Number,
-        required: true
+        required: true,
+        min: [1, "At least 1 row required"],
+        max: [200, "Too many rows!"],
+        validate: {
+            validator: Number.isInteger,
+            message: 'Row count is not an integer value'
+        }
     },
     cols: {
         type: Number,
-        required: true
+        required: true,
+        min: [1, "At least 1 column required"],
+        max: [200, "Too many columns!"],
+        validate: {
+            validator: Number.isInteger,
+            message: 'Column count is not an integer value'
+        }
     },
     name: {
         type: String,

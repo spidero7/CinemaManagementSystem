@@ -75,6 +75,10 @@ const CinemaHalls = ({cinemaId}) => {
             setHallData(hallTemplate)
             handleCinemaHallsFetch()
         })
+        .catch(response => {
+            console.error(response)
+            toast.current.show({severity:'error', summary: 'Error', detail:'Error while creating cinema', life: 3000});
+        })
     }
 
     const handleCinemaHallDelete = (id) => {
@@ -104,13 +108,17 @@ const CinemaHalls = ({cinemaId}) => {
             }
         })
         .then(async response => {
+            console.log(response)
             await handleCinemaHallsFetch()
             if(response.status == 200) {
+                console.log("xD")
                 await toast.current.show({severity:'success', summary: 'Success', detail:'Hall succesfully updated', life: 3000});
-            } else {
-                await toast.current.show({severity:'error', summary: 'Error', detail:'Error while updating cinema', life: 3000});
             }
             await setHallData(hallTemplate)
+        })
+        .catch(async response => {
+            console.error(response)
+            await toast.current.show({severity:'error', summary: 'Error', detail:'Error while updating cinema', life: 3000});
         })
     }
 
@@ -187,6 +195,8 @@ const CinemaHalls = ({cinemaId}) => {
                                 ...prevState,
                                 rows: e.target.value
                             }))}
+                            min={1}
+                            max={200}
                         />
                     </span>
                 </div>
@@ -206,6 +216,8 @@ const CinemaHalls = ({cinemaId}) => {
                                 ...prevState,
                                 cols: e.target.value
                             }))}
+                            min={1}
+                            max={200}
                         />
                     </span>
                 </div>
@@ -260,6 +272,7 @@ const CinemaHalls = ({cinemaId}) => {
                     label="New hall"
                     onClick={() => {
                         setDisplayCinemaHallModal(true)
+                        setHallData(hallTemplate)
                         setCinemaHallDialogMode("ADD")
                     }}
                 />

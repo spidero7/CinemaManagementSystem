@@ -8,9 +8,19 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const corsOptions = require('../config/corsOptions')
 
+const isNumberOk = (number) => {
+    if(number < 1) return false
+    if(number > 200) return false
+    if(!Number.isInteger(number)) return false
+    return true
+}
+
 route.use(cors(corsOptions))
 
 route.post('/cinema-hall', verifyToken, verifyRoles(ROLES_LIST.Admin), async (req, res) => {
+    if(!isNumberOk(req.body.cols)) return res.status(400).send("Bad request - /cinema-hall POST - cols")
+    if(!isNumberOk(req.body.rows)) return res.status(400).send("Bad request - /cinema-hall POST - rows")
+    
     const cinemaHall = new CinemaHall({
         rows: req.body.rows,
         cols: req.body.cols,
@@ -60,14 +70,16 @@ route.get('/cinema-hall/:cinemaHallId', async (req, res) => {
 })
 
 route.put('/cinema-hall', verifyToken, verifyRoles(ROLES_LIST.Admin), async (req, res) => {
-    CinemaHall.findByIdAndUpdate(
+    if(!isNumberOk(req.body.newCinemaHall.cols)) return res.status(400).send("Bad request - /cinema-hall PUT - cols")
+    if(!isNumberOk(req.body.newCinemaHall.rows)) return res.status(400).send("Bad request - /cinema-hall PUT - rows")
+    await CinemaHall.findByIdAndUpdate(
         req.body.id,
         {...req.body.newCinemaHall},
         { new: true },
         (err, docs) => {
             if(err) {
                 return res.status(500)
-                    .send('server error - /cinemas PUT')
+                    .send('server error - /cinema-hall PUT')
             }
             return res.status(200).send(docs)
         }
@@ -79,7 +91,6 @@ route.delete('/cinema-hall/:cinemaHallId', verifyToken, verifyRoles(ROLES_LIST.A
         mongoose.Types.ObjectId(req.params.cinemaHallId),
         (err, docs) => {
             if (err) {
-                console.error(err)
                 return res
                     .status(500)
                     .send('server error - /cinema-hall DELETE')

@@ -154,7 +154,26 @@ async (req, res) => {
         }
     })
 
-    screenings.forEach(async _screening => {
+    // screenings.forEach(async _screening => {
+    //     const _movie = await Movie.findById(mongoose.Types.ObjectId(_screening.movieId))
+    //     const [_screeningHours, _screeningMinutes] = stringToTimeTouple(_movie.length)
+    //     const _screeningStart = new Date(_screening.screeningDate)
+    //     const _screeningEnd = new Date(_screeningStart.getTime() + _screeningHours * 1000*60*60 + _screeningMinutes * 1000*60 )
+        
+    //     // Check if there's break after screening
+    //     const endDiff = screeningEnd - _screeningEnd
+    //     if(endDiff > 0 && endDiff < 900000) {
+    //         throw new Error("Bad request - there has to be a 15 minute break before next screening")
+    //     }
+        
+    //     //Check if screenings overlap
+    //     if(checkOverlapping(screeningStart, screeningEnd, _screeningStart, _screeningEnd)) {
+    //         throw new Error("Bad request - screening overlaps with another screening")
+    //         // return res.status(400).send("Bad request - screening overlaps with another screening")
+    //     }
+    // })
+
+    for(const _screening of screenings) {
         const _movie = await Movie.findById(mongoose.Types.ObjectId(_screening.movieId))
         const [_screeningHours, _screeningMinutes] = stringToTimeTouple(_movie.length)
         const _screeningStart = new Date(_screening.screeningDate)
@@ -165,13 +184,13 @@ async (req, res) => {
         if(endDiff > 0 && endDiff < 900000) {
             return res.status(400).send("Bad request - there has to be a 15 minute break before next screening")
         }
-
+        
         //Check if screenings overlap
         if(checkOverlapping(screeningStart, screeningEnd, _screeningStart, _screeningEnd)) {
             return res.status(400).send("Bad request - screening overlaps with another screening")
         }
+    }
 
-    })
 
 
     try {

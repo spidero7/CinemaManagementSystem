@@ -13,6 +13,10 @@ const AdminPanel = () => {
                 <Link to="/cinemas-management" className="m-1">
                     <Button label="Cinemas management" />
                 </Link>
+                <br />
+                <Link to="/screening" className="m-1">
+                    <Button label="Screening" />
+                </Link>
             </div>
         </div>
     );

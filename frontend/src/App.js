@@ -12,6 +12,7 @@ import Unauthorized from './components/Auth/Unauthorized';
 import CinemasManagement from './components/CinemasManagement/CinemasManagement'
 import AdminPanel from './components/AdminPanel/AdminPanel';
 import MovieInfo from './components/MovieInfo/MovieInfo';
+import Screening from './components/Screening/Screening';
 
 export const ROLES = {
 	Admin: 515,
@@ -48,6 +49,7 @@ function App() {
 					<Route path="/cinemas-management" element={<CinemasManagement />} />
 					<Route path="/admin-panel" element={<AdminPanel />} />
 					<Route path="/movies" element={<MoviesTable />} />
+					<Route path="/screening" element={<Screening />} />
 				</Route>
 
 				{/* {catch all} */}

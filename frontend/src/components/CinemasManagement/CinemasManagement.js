@@ -71,8 +71,12 @@ const CinemasManagement = () => {
             } else {
                 toast.current.show({severity:'error', summary: 'Error', detail:'Error while deleting cinema', life: 3000});
             }
-            handleCinemasFetch()
         })
+        .catch(async response => {
+            console.error(response)
+            await toast.current.show({severity:'error', summary: 'Error', detail:'Error while updating cinema', life: 3000});
+        })
+        handleCinemasFetch()
     }
 
     const parseDates = (data) => {

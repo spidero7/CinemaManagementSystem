@@ -161,7 +161,8 @@ async (req, res) => {
         const _screeningEnd = new Date(_screeningStart.getTime() + _screeningHours * 1000*60*60 + _screeningMinutes * 1000*60 )
         
         // Check if there's break after screening
-        const endDiff = screeningEnd - _screeningEnd
+        const endDiff = screeningStart - _screeningEnd
+        console.log(_movie.length)
         if(endDiff > 0 && endDiff < 900000) {
             return res.status(400).send("Bad request - there has to be a 15 minute break before next screening")
         }
@@ -198,11 +199,19 @@ async (req, res) => {
 	)
 })
 
-route.get('/screenings/hall/:cinemaHallId', cors(corsOptions),
+route.get('/screenings/hall/:cinemaHallId/:screeningDate', cors(corsOptions),
 async (req, res) => {
+    const day = new Date(req.params.screeningDate)
+
     Screening.find({
 		    cinemaHallId: mongoose.Types.ObjectId(req.params.cinemaHallId),
+            screeningDate: {
+                $gte: startOfDay(day), 
+                $lte: endOfDay(day)
+            }
         },
+        null,
+        {sort: {screeningDate: 1}},
 		(err, docs) => {
 			if (err) {
 				console.error(err)

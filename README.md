@@ -4,6 +4,12 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+Backend:
+> [Live version](https://coderscamp-2021-project-3.herokuapp.com/) 
+
+Frontend:
+> [Live version](https://coders-camp-2021-project-3.vercel.app/) 
+
 ## Project 3 - Cinema management system
 *The project was carried out as part of the largest open web programming course in Poland - [CodersCamp 2021](https://www.coderscamp.edu.pl/).*  
 
